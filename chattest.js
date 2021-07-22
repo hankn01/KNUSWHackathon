@@ -7,11 +7,13 @@ var mongoose = require('mongoose');
 var http = require('http').Server(app); //1
 var io = require('socket.io')(http);    //1
 var fs = require('fs');
-app.get('/jieum',function(req, res){  //2
-  res.sendFile(__dirname + '/client.html');
-});
 
+const { callbackify } = require('util');
 
+app.use('/public', express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname+'/public'))
 
 mongoose.connect('mongodb://localhost:27017/moim');
 var db = mongoose.connection;
@@ -30,7 +32,7 @@ var moim = mongoose.Schema({
     need: 'boolean',
     member: 'Array'
 });
-var Moimdata = mongoose.model('Schema', moim);
+var Moimdata = mongoose.model('moim', moim);
 
 var count=1;
 io.on('connection', function(socket){ //3
@@ -51,7 +53,18 @@ io.on('connection', function(socket){ //3
 
 
 app.post('/addmoim', (req, res)=> {
-    
+    db.collection('moim').insertOne({
+    name: req.body.name,
+    kind: req.body.kind,
+    date: req.body.date,
+    time: req.body.time,
+    need: req.body.need,
+    member: req.body.member
+
+    }, function(err, result) {
+        db.close();
+        callbackify(null, 'DATABASE SERVER: 모임이 추가되었습니다.');
+    })
 });
 app.post('/deletemoim', (req, res) => {
 
@@ -88,6 +101,13 @@ app.get('/moyeora', (req, res) => {
         res.end();
 
 })});
+app.get('/jieum',function(req, res){  //2
+    fs.readFile('./public/client.html', 'UTF-8', function(err, data) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
+    })});
+
 http.listen(3000, function(){ //4
   console.log('server on!');
 });
