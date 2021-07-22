@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>모임 추가</title>
+
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=79887fcf87a35cc5166bf998ec374e14"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+</script>
+<body>
+    
+<form>
+    모임 이름<input type="text"><br>
+    모임 일시<input type="text"><br>
+    모임 장소<input type="text"><br>
+    모임 종류<br>
+    팀프로젝트<input type="ratio"><br>
+    놀자<input type="ratio"><br>
+    여행<input type="ratio"><br>
+    소모임<input type="ratio"><br>
+   
+    주기적 모임 여부<input type="radio">
+    <!-- 지도를 표시할 div 입니다 -->
+<div id="map" style="width:100%;height:350px;"></div>
+
+
+</form>
+
+</body>
+</html>
