@@ -5,13 +5,47 @@
     <meta charset="utf-8">
     <title>Chat</title>
     <style>
+        body{
+            background: khaki;
+        }
       .chat_log{ width: 95%; height: 200px; }
       .name{ width: 10%; }
-      .message{ width: 70%; }
-      .chat{ width: 10%; }
+      .message{ width: 70%; border-radius: 20px; height: 30px; font-size: 20px; padding-left: 10px; padding-right: 10px;}
+      
+      .chat {
+        margin-right: 3px;
+        
+  width: 140px;
+  height: 35px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: rgb(255, 166, 82);
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgb(255, 195, 118);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-top: -2px;
+  }
+.chat:hover {
+  background-color: #ff0000;
+  box-shadow: 0px 15px 20px rgba(255, 119, 85, 0.699);
+  color: rgb(255, 255, 0);
+  transform: translateY(-7px);
+}  
     </style>
   </head>
   <body>
+      <div class="nav-bar">
+        <img src="chatlogo.png">
+
+
+      </div>
       학생 담당 업무 부서와 직접 대화하고 소통할 수 있습니다.<br>
       문의 사항에 대해 전문성을 가진 각 부서에 전달하고 답변을 들을 수 있습니다.
     <div>
@@ -20,7 +54,7 @@
     <form id="chat">
       <input id="name" class="name" type="text" readonly>
       <input id="message" class="message" type="text">
-      <input type="submit" class="chat" value="chat"/>
+      <input type="submit" class="chat" value="전송"/>
     </form>
     <div id="box" class="box">
     <script src="/socket.io/socket.io.js"></script> <!-- 1 -->

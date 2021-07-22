@@ -11,6 +11,8 @@ app.get('/jieum',function(req, res){  //2
   res.sendFile(__dirname + '/client.html');
 });
 
+
+
 mongoose.connect('mongodb://localhost:27017/moim');
 var db = mongoose.connection;
 db.on('error', function() {
@@ -49,15 +51,7 @@ io.on('connection', function(socket){ //3
 
 
 app.post('/addmoim', (req, res)=> {
-    var newMoim =  new Moimdata({
-        name: req.body.name,
-        kind: req.body.kind,
-        date: req.body.date,
-        time: req.body.time,
-        need: req.body.need
-    });
-    newMoim.save
-        .then(()=> console.log("SAVED"));
+    
 });
 app.post('/deletemoim', (req, res) => {
 
