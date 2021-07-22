@@ -20,3 +20,6 @@ Team Name: 불사조
 프로젝트 기획 및 개발 : 한강민
 
 시연 영상 링크: https://www.youtube.com/watch?v=eP3Ed-N2zN4
+
+
+3000번 포트로 접속 가능하며, 접속이 원활하지 않을 경우 뒤에 '/inp'를 붙여주세요.
