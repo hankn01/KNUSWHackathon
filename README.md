@@ -18,3 +18,5 @@ Team Name: 불사조
 크누노티 (KNU-EASM) 시연 영상
 
 프로젝트 기획 및 개발 : 한강민
+
+시연 영상 링크: https://www.youtube.com/watch?v=eP3Ed-N2zN4
