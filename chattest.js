@@ -7,13 +7,19 @@ var mongoose = require('mongoose');
 var http = require('http').Server(app); //1
 var io = require('socket.io')(http);    //1
 var fs = require('fs');
-
+var ejs = require('ejs');
+var msg = require('dialog');
 const { callbackify } = require('util');
+
 
 app.use('/public', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname+'/public'))
+
+app.set('views', __dirname + '/');
+app.set('view engine', 'ejs');
+
 
 mongoose.connect('mongodb://localhost:27017/moim');
 var db = mongoose.connection;
@@ -24,15 +30,18 @@ db.once('open', function() {
    console.log('CONNECTED'); 
 });
 
-var moim = mongoose.Schema({
-    name: 'string',
-    kind: 'string',
-    date: 'string',
-    time: 'string',
-    need: 'boolean',
-    member: 'Array'
+var moimSchema = mongoose.Schema({
+    name: {type: String, required: true},
+    password: {type: String, required: true},
+    kind: String,
+    date: {type: Date, default: Date.now},
+    place: {type: String},
+    need: String,
+    member: {
+        type:String
+    }
 });
-var Moimdata = mongoose.model('moim', moim);
+var Moimdata = mongoose.model('Moim', moimSchema);
 
 var count=1;
 io.on('connection', function(socket){ //3
@@ -51,22 +60,32 @@ io.on('connection', function(socket){ //3
   });
 });
 
+app.get('/newmoim', (req, res) => res.render("signup", {page: "signup"}));
 
 app.post('/addmoim', (req, res)=> {
-    db.collection('moim').insertOne({
-    name: req.body.name,
-    kind: req.body.kind,
-    date: req.body.date,
-    time: req.body.time,
-    need: req.body.need,
-    member: req.body.member
+    console.log(req.body);
+    Moimdata.create({name:req.body.name,
+        password: req.body.password,
+        kind: req.body.kind,
+        date: req.body.date,
+        place: req.body.place,
+        need: req.body.need,
+        member: req.body.member
+        });
 
-    }, function(err, result) {
-        db.close();
-        callbackify(null, 'DATABASE SERVER: 모임이 추가되었습니다.');
-    })
+    
 });
-app.post('/deletemoim', (req, res) => {
+app.post('/delmoim', (req, res) => {
+    Moimdata.findOneAndDelete({name: req.body.name, password: req.body.password}, (err, doc) => {
+        if (err) {
+            console.log("Something wrong when removing data!");
+        }
+        if(doc===null)
+        {
+            msg.err("해당 모임이 없습니다.");
+        }
+        console.log(doc);
+    });
 
 });
 app.post('/addbuilding', (req, res) => {
@@ -77,11 +96,21 @@ app.post('/opengate', (req, res) => {
 });
 
 app.post('/addmem', (req, res) => {
-
+    Moimdata.findOneAndUpdate({name: req.body.name, password: req.body.password}, {$set:{member:req.body.member}}, {new: true}, (err, doc) => {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        if(doc===null)
+        {
+            msg.err("해당 모임이 없습니다.");
+        }
+        
+        console.log(doc);
+    });
 });
-app.post('/delmem', (req, res) => {
+app.get('/modwind', (req, res) => res.render("modify", {page: "modify"}));
+app.get('/delwind', (req, res) => res.render("delete", {page: "delete"}));
 
-});
 
 
 
@@ -94,6 +123,17 @@ app.get('/', (req, res) => {
 
     })});
 
+app.get("/moyeora", function(req, res) {
+    Moimdata.find({}, function(err, allDetails) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("moyeora", {details: allDetails})
+        }
+    })
+})
+
+/*
 app.get('/moyeora', (req, res) => {
     fs.readFile('./public/moyeora.html', 'UTF-8', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
@@ -101,6 +141,8 @@ app.get('/moyeora', (req, res) => {
         res.end();
 
 })});
+*/
+
 app.get('/jieum',function(req, res){  //2
     fs.readFile('./public/client.html', 'UTF-8', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});

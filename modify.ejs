@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                background: rgba(19, 18, 18, 0.897);
+            }
+            .f-btn {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+input{
+    background: lightgray;
+    border-radius: 20px;
+    color: black;
+}
+label{
+    color:ivory;
+}
+.f-btn:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(171, 173, 172, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}  
+
+.c-btn {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+.c-btn:hover {
+  background-color: #ea00ff;
+  box-shadow: 0px 15px 20px rgba(248, 109, 253, 0.699);
+  color: #fff;
+  transform: translateY(-7px);
+}  
+
+
+
+            input {
+                margin:10px auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+	font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            label
+            {
+
+                
+  font-family: 'Nanum Myeongjo', serif;
+
+            }
+            h1 {
+  color: #086972;
+  padding: 0.7em 0 0.3em 0;
+  border-top: solid 5px #01a9b4;
+  background: khaki;
+  margin-bottom: 0px;
+  border-bottom: solid 10px #01a9b4;
+}
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+    </head>
+    <body>  
+        <h1>모임 멤버 수정하기</h1>
+        
+
+        <form action="/addmem" method="POST" class="addmem">
+            <label for="name">모임 이름</label><br>
+            <input name="name" type="text" required /><br>
+            <label for="member">멤버</label><br>
+            <input name="member" type="text"/><br>
+            <label for="password" type="password">
+                모임 비밀번호
+            </label><br>
+            <input name="password" type="password"/><br>
+            <button class="f-btn" onclick="form.submit(); window.close();">수정</button>
+        </form>
+    </body>
+</html>
