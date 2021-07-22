@@ -1,4 +1,4 @@
-
+var request = require('request')
 
 
 var express = require('express');
@@ -20,6 +20,22 @@ app.use(express.static(__dirname+'/public'))
 app.set('views', __dirname + '/');
 app.set('view engine', 'ejs');
 
+const url = "https://api.odcloud.kr/api/15080665/v1/uddi:6377af05-8fed-484c-868b-a9a72fcb0089?page=20&perPage=10&returnType=JSON&serviceKey=data-portal-test-key";
+
+var info = null;
+request(url, (err, response, body)=> {
+    if(err) throw err;
+    console.log(body);
+
+    info = JSON.parse(body);
+
+    for(i in info['data']) {
+        console.log(info['data'][i]['구분']);
+        console.log(info['data'][i]['날짜']);
+        console.log(info['data'][i]['확진자 수(명)']);
+    }
+    
+});
 
 mongoose.connect('mongodb://localhost:27017/moim');
 var db = mongoose.connection;
@@ -46,7 +62,7 @@ var Moimdata = mongoose.model('Moim', moimSchema);
 var count=1;
 io.on('connection', function(socket){ //3
   console.log('user connected: ', socket.id);  //3-1
-  var name = "user" + count++;                 //3-1
+  var name = "익명 사용자 " + count++;                 //3-1
   io.to(socket.id).emit('change name',name);   //3-1
 
   socket.on('disconnect', function(){ //3-2
@@ -111,18 +127,25 @@ app.post('/addmem', (req, res) => {
 app.get('/modwind', (req, res) => res.render("modify", {page: "modify"}));
 app.get('/delwind', (req, res) => res.render("delete", {page: "delete"}));
 
+app.get('/ind', (req, res) => res.render("index", {page: "index", Info: info}));
 
 
-
+/*
 app.get('/', (req, res) => {
+  
+
+
     fs.readFile('./public/index.html', 'UTF-8', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         res.end();
 
 
-    })});
-
+    }
+    //https://api.odcloud.kr/api/15080665/v1/uddi:6377af05-8fed-484c-868b-a9a72fcb0089?page=1&perPage=10&returnType=JSON&serviceKey=data-portal-test-key
+    
+    )});
+*/
 app.get("/moyeora", function(req, res) {
     Moimdata.find({}, function(err, allDetails) {
         if(err) {

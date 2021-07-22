@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8">
     <title>KNU-EASM 크누바로챗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <style>
       html{
       background: linear-gradient(to right, #1687ED, #FF22BC);
@@ -12,9 +15,12 @@
       .chat_log{ width: 95%; height: 200px; }
       .name{ width: 10%; }
       .message{ width: 70%; border-radius: 20px; height: 30px; font-size: 20px; padding-left: 10px; padding-right: 10px;}
-      
+      p {
+        font-family: 'Nanum Myeongjo', serif;
+        }
       .chat {
         margin-right: 3px;
+
         
   width: 140px;
   height: 35px;
@@ -39,7 +45,12 @@
   color: rgb(255, 255, 0);
   transform: translateY(-7px);
 }  
-
+.name{
+  border-radius: 20px;
+  font-size: 20px;
+  width: 150px;
+  height: 35px;
+}
   
 .topnav {
       display: block;
@@ -98,14 +109,16 @@
         
       <div class="img"><img id="logoimg" src="chatlogo.png"></div>
       
-      <a class="active" href="/">Home</a>
+      <a class="active" href="/ind">Home</a>
         <a href="jieum">크누바로챗</a>
         <!--<a href="barrier">배리어프리 학교건물 출입관리</a> -->
         <a href="moyeora">모이자! 크누</a>
           </div>
       <br>
+      <p>
       학생 및 교직원이 실시간으로 채팅이 가능합니다.<br>
       공개된 커뮤니티로 교직원과 학생 모두가 참여하여 건전한 커뮤니티를 만들어 나갑니다.
+      </p>
     <div>
       <textarea id="chatLog" class="chat_log" readonly></textarea>
     </div>

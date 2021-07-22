@@ -57,6 +57,23 @@
         
     }
 
+    h1 {
+  color: #086972;
+  padding: 0.7em 0 0.3em 0;
+  border-top: solid 5px #01a9b4;
+  background: khaki;
+  margin-bottom: 0px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+h2 {
+  color: #3cbeca;
+  padding: 0.7em 0 0.3em 0;
+  margin-top: 0px;
+  background: khaki;
+  border-bottom: solid 10px #01a9b4;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
 
     table {
   border-collapse:collapse;
@@ -147,8 +164,39 @@ table td {
   <a href="moyeora">모이자! 크누</a>
     </div>
 <br>
+<h1>홈 화면 - 코로나 19 확진자 현황</h1>
+<h2>대구 북구 지역 코로나 19의 확진자 수 통계입니다.</h2>
 
 
+<table>
+  <thead>
+    <tr>
+      <td>
+        발생지역
+      </td>
+      <td>
+        날짜
+      </td>
+      <td>
+        확진자 수(명)
+      </td>
+    </tr>
 
+  </thead>
+  <% Info['data'].forEach(function(item){ %>
+    
+  <tbody id="myTable">
+   <tr>
+     <td><%=item['구분']%></td>
+     <td><%=item['날짜']%></td>
+     <td><%=item['확진자 수(명)']%></td>
+ 
+
+   </tr>
+  </tbody>
+  <% }) %>
+</table>
+
+</div>
 </body>
 </html>
