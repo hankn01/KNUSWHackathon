@@ -76,6 +76,8 @@ io.on('connection', function(socket){ //3
   });
 });
 
+app.get('/', (req, res)=> res.render("index", {page: "index", Info: info}));
+
 app.get('/newmoim', (req, res) => res.render("signup", {page: "signup"}));
 
 app.post('/addmoim', (req, res)=> {

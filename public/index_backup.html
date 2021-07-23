@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<title>모이자!</title>
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .topnav {
+      display: block;
+      text-align: center;
+      
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      
+      color: #f2f2f2;
+      margin: 20px;
+      padding-top: 20px;
+      padding: 40px 40px;
+      text-decoration: none;
+      
+      font-size: 17px;
+      align-self: left;
+      vertical-align: text-bottom;
+      line-height: 50px;
+      
+    }
+    
+    .topnav img {
+        float: left;
+        vertical-align: text-bottom;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: rgb(255, 0, 0);
+      color: white;
+      vertical-align: text-bottom;
+    }
+    #logoimg {
+        display: block;
+        width: 112px;
+        height: 53px;
+        text-align: left;
+        
+    }
+
+    h1 {
+  color: #086972;
+  padding: 0.7em 0 0.3em 0;
+  border-top: solid 5px #01a9b4;
+  background: khaki;
+  margin-bottom: 0px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+h2 {
+  color: #3cbeca;
+  padding: 0.7em 0 0.3em 0;
+  margin-top: 0px;
+  background: khaki;
+  border-bottom: solid 10px #01a9b4;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+
+    table {
+  border-collapse:collapse;
+  margin: 30px 40px 15px 15px;
+  width:inherit;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 0 20px rgba(215, 121, 210, 0.6);
+
+}
+
+table th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+table td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+.f-btn {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.f-btn:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}  
+
+
+
+.c-btn {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+.c-btn:hover {
+  background-color: #ea00ff;
+  box-shadow: 0px 15px 20px rgba(248, 109, 253, 0.699);
+  color: #fff;
+  transform: translateY(-7px);
+}  
+
+    </style>
+
+
+<body>
+
+    <div id="nav-bar" class="topnav">
+        
+<div class="img"><img id="logoimg" src="mainlogo.png"></div>
+
+<a class="active" href="/ind">Home</a>
+  <a href="jieum">크누바로챗</a>
+  <!--<a href="barrier">배리어프리 학교건물 출입관리</a> -->
+  <a href="moyeora">모이자! 크누</a>
+    </div>
+<br>
+<h1>홈 화면 - 코로나 19 확진자 현황</h1>
+<h2>대구 북구 지역 코로나 19의 확진자 수 통계입니다.</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        발생지역
+      </td>
+      <td>
+        날짜
+      </td>
+      <td>
+        확진자 수(명)
+      </td>
+    </tr>
+
+  </thead>
+  <% Info['data'].forEach(function(item){ %>
+    
+  <tbody id="myTable">
+   <tr>
+     <td><%=item['구분']%></td>
+     <td><%=item['날짜']%></td>
+     <td><%=item['확진자 수(명)']%></td>
+ 
+
+   </tr>
+  </tbody>
+  <% }) %>
+</table>
+
+</div>
+</body>
+</html>
