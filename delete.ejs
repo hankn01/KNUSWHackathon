@@ -101,7 +101,10 @@ label{
                 모임 비밀번호
             </label><br>
             <input name="password" type="password"/><br>
-            <button class="f-btn" onclick="form.submit(); window.close();">삭제</button>
+            <button class="f-btn" onsubmit="setTimeout(function(){
+                opener.location.reload(true);
+                window.close();
+            },500);" type="submit">삭제</button>
         </form>
     </body>
 </html>
