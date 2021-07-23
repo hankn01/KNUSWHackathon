@@ -28,3 +28,4 @@ Team Name: 불사조
 최상위 폴더에서 npm start 명령어로 실행 가능합니다.
 
 실행이 되지 않을 시 node app.js 명령어를 입력해 실행해 주세요.
+Server-side에서는 mongoDB가 실행되고 있어야 합니다.
